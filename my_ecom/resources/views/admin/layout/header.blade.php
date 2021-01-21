@@ -33,7 +33,7 @@
                                                 <i class="zmdi zmdi-account"></i>Account</a>
                                         </div>
                                         <div class="account-dropdown__item">
-                                            <a href="#">
+                                            <a href="{{ route('settings') }}">
                                                 <i class="zmdi zmdi-settings"></i>Setting</a>
                                         </div>
                                     </div>
