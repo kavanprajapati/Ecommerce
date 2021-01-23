@@ -33,12 +33,12 @@
                                             <i class="zmdi zmdi-account"></i>Account</a>
                                     </div>
                                     <div class="account-dropdown__item">
-                                        <a href="{{ route('settings') }}">
+                                        <a href="{{ route('admin.settings') }}">
                                             <i class="zmdi zmdi-settings"></i>Setting</a>
                                     </div>
                                 </div>
                                 <div class="account-dropdown__footer">
-                                    <a href="{{ route('logout') }}">
+                                    <a href="{{ route('admin.logout') }}">
                                         <i class="zmdi zmdi-power"></i>Logout</a>
                                 </div>
                             </div>

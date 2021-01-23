@@ -4,5 +4,5 @@ return [
     'SITE_NAME'              => 'Ecommerce',
     'SITE_EMAIL'             => 'myecom@gmail.com',
     'SITE_LOGO'              => '',
-    'VALIDATION_MESSAGE'     => ''
+    'FORM_COL_SIZE'          => '12'
 ];

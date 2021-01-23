@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Admin;
 use Illuminate\Http\Request;
@@ -18,7 +18,7 @@ class AdminController extends Controller
     public function index(Request $request)
     {
         if ($request->session()->has('ADMIN_DATA')) {
-            return redirect()->route('dashboard');
+            return redirect()->route('admin.dashboard');
         }
         return view('admin.login');
     }
@@ -35,7 +35,7 @@ class AdminController extends Controller
         if (isset($adminData)) {
             if ($adminData->email == $request->email && Hash::check($request->password, $adminData->password)) {
                 $request->session()->put('ADMIN_DATA', ["id" => $adminData->id, "name" => $adminData->name, "email" => $adminData->email]);
-                return redirect('admin/dashboard');
+                return redirect()->route('admin.dashboard');
             } else {
                 return redirect()->back()->withErrors(["topError" => "Sorry! Your credentials are not valid!"]);
             }

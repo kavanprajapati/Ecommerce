@@ -8,12 +8,12 @@
         <div class="menu-sidebar__content js-scrollbar1">
             <nav class="navbar-sidebar">
                 <ul class="list-unstyled navbar__list">
-                    <li class="{{ Request::is('admin/dashboard') ? 'active' : '' }}">
-                        <a href="{{ route('dashboard') }}">
+                    <li class="{{ Request::is('admin/dashboard*') ? 'active' : '' }}">
+                        <a href="{{ route('admin.dashboard') }}">
                             <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                     </li>
-                    <li class="{{ Request::is('admin/category') ? 'active' : '' }}">
-                        <a href="{{ route('category') }}">
+                    <li class="{{ Request::is('admin/category*') ? 'active' : '' }}">
+                        <a href="{{ route('admin.category.index') }}">
                             <i class="fa fa-list-ul"></i>Category</a>
                     </li>
                 </ul>

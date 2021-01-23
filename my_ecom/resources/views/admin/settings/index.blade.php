@@ -9,7 +9,7 @@
                         <h3 class="text-center title-2">Settings</h3>
                     </div>
                     <hr>
-                    <form action="{{ route('settings.update') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('admin.settings.update') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label for="site_name" class="control-label mb-1">Site Name</label>

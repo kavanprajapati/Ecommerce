@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\SettingController;
-use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,21 +24,24 @@ Route::get('admin', [AdminController::class, 'index']);
 Route::post('admin/auth', [AdminController::class, 'auth'])->name('admin.auth');
 
 Route::group(['middleware' => ['adminAuth']], function () {
-    Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 
-    // category routes
-    Route::get('admin/category', [CategoryController::class, 'index'])->name('category');
+    Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
+        Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 
-    // Settings routes
-    Route::get('admin/settings', [SettingController::class, 'edit'])->name('settings');
-    Route::post('admin/settings', [SettingController::class, 'update'])->name('settings.update');
+        // category routes
+        Route::resource('category', CategoryController::class);
 
 
+        // Settings routes
+        Route::get('settings', [SettingController::class, 'edit'])->name('settings');
+        Route::post('settings', [SettingController::class, 'update'])->name('settings.update');
 
-    // logout
-    Route::get('admin/logout', function () {
-        session()->forget('ADMIN_DATA');
-        return redirect('admin');
-    })->name('logout');
+
+        // logout
+        Route::get('logout', function () {
+            session()->forget('ADMIN_DATA');
+            return redirect('admin');
+        })->name('logout');
+    });
 });
