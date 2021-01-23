@@ -10,7 +10,8 @@ class SettingController extends Controller
 
     public function edit(Setting $setting)
     {
-        return view('admin.settings.index');
+        $setting = Setting::find(1);
+        return view('admin.settings.index',compact('setting'));
     }
 
     /**
@@ -27,6 +28,15 @@ class SettingController extends Controller
             'site_email' => 'required|email',
         ]);
 
-        dd($request->input());
+        $setting = Setting::find(1);
+        $setting->site_name = $request->input('site_name');
+        $setting->site_email = $request->input('site_email');
+        $setting->save();
+
+        if (!empty($setting->id)) {
+            return redirect()->back()->with('success', 'Settings saved successfully!');
+        } else {
+            return redirect()->back()->with('error', 'Oops.. Some error occured while saving!');
+        }
     }
 }
