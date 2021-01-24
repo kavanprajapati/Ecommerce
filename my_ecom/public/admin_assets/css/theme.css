@@ -14649,3 +14649,8 @@ section {
 .vue-lists ul, .vue-lists ol {
     padding-left: 30px;
 }
+
+.text-danger {
+    color: red !important;
+    font-size: 14px;
+}

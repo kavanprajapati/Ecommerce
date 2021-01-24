@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Str;
 
 class CategoryController extends Controller
 {
@@ -35,7 +36,18 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $result = $this->validateRequest();
+
+        $category = new Category;
+        $category->category_name = $request->category_name;
+        $category->category_slug = Str::slug($request->category_name);
+        $category->save();
+
+        if (!empty($category->id)) {
+            return redirect()->route('admin.category.index')->with('success', 'Category added successfully!');
+        } else {
+            return redirect()->route('admin.category.index')->with('error', 'Oops.. Some error occured!');
+        }
     }
 
     /**
@@ -81,5 +93,26 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         //
+    }
+
+    public function validateRequest($id = "")
+    {
+        if ($id != "") {
+            $validateData = request()->validate(
+                [
+                    'category_name' => 'required|unique:categories'
+                ],
+                ['category_name.required' => 'Please enter :attribute']
+            );
+        } else {
+            $validateData = request()->validate(
+                [
+                    'category_name' => 'required|unique:categories' . $id
+                ],
+                ['category_name.required' => 'Please enter :attribute']
+            );
+        }
+
+        return $validateData;
     }
 }

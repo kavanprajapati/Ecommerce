@@ -4,9 +4,13 @@
         <input
         type="text"
         id="category_name"
+        name="category_name"
         placeholder="Enter category name"
         class="form-control"
         />
+        @error('category_name')
+          <span class="text-danger">{{ $message }}</span>
+        @enderror
     </div>
 </div>
 <div class="card-footer">

@@ -8,6 +8,7 @@
             </div>
             <div class="card-form-body">
             <form action="{{ route('admin.category.store') }}" method="post" enctype="multipart/form-data">
+               @csrf
                @include('admin.category.form')
             </form>
             </div>
